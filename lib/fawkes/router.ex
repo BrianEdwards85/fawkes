@@ -1,19 +1,15 @@
 defmodule Fawkes.Router do
   use Plug.Router
 
-  plug(:match)
-  plug(:dispatch)
+  plug Plug.Logger
 
-  get "/" do
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(message()))
-  end
+  plug :match
+  plug(Plug.Parsers, parsers: [:json], json_decoder: Jason)
+  plug :dispatch
 
-  defp message do
-    %{
-      response_type: "in_channel",
-      text: "Hello from BOTTER :)"
-    }
+  forward "/bot", to: Fawkes.Routes.Bot
+
+  match _ do
+    send_resp(conn, 404, "Not found!")
   end
 end
