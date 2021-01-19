@@ -12,7 +12,8 @@ defmodule Fawkes.Application do
     children = [
       # Starts a worker by calling: Fawkes.Worker.start_link(arg)
       # {Fawkes.Worker, arg}
-      {Plug.Cowboy, scheme: :http, plug: Fawkes.Router, options: [port: port()]}
+      {Plug.Cowboy, scheme: :http, plug: Fawkes.Router, options: [port: port()]},
+      {Fawkes.Repo, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

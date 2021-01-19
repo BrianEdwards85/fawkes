@@ -8,6 +8,7 @@ defmodule Fawkes.Router do
   plug :dispatch
 
   forward "/bot", to: Fawkes.Routes.Bot
+  forward "/api", to: Fawkes.Routes.Api
 
   match _ do
     send_resp(conn, 404, "Not found!")
