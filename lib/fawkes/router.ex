@@ -9,6 +9,7 @@ defmodule Fawkes.Router do
 
   forward "/bot", to: Fawkes.Routes.Bot
   forward "/api", to: Fawkes.Routes.Api
+  forward "/books", to: Fawkes.Routes.Books
 
   match _ do
     send_resp(conn, 404, "Not found!")
