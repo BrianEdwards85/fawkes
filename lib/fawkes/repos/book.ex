@@ -6,7 +6,7 @@ defmodule Fawkes.Repos.Book do
   @primary_key {:id, :string, autogenerate: false}
   schema "books" do
     field :title, :string
-    field :author, :string
+    belongs_to :author, Fawkes.Repos.Author, type: :binary_id
     field :price, :integer
   end
 end
