@@ -5,7 +5,6 @@ defmodule Fawkes.Repos.Book do
   @schema_prefix "fawkes"
   @primary_key {:id, :string, autogenerate: false}
   schema "books" do
-#    field :id, :string
     field :title, :string
     field :author, :string
     field :price, :integer
