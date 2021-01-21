@@ -1,12 +1,20 @@
 defmodule Fawkes.Repos.Authors do
+  use Ecto.Schema
+
+  @derive {Jason.Encoder, only: [:id, :name]}
+  @schema_prefix "fawkes"
+  @primary_key {:id, :binary_id, autogenerate: false}
+  schema "authors" do
+    field :name, :string
+  end
+
   import Ecto.Query
 
   alias Fawkes.Repo
-  alias Fawkes.Repos.Author
 
-  def list_authors do
-    Repo.all(Author)
+  def list_authors(query \\ __MODULE__) do
+    Repo.all(query)
   end
 
-  def get_author(id), do: Repo.get(Author, id)
+  def get_author(query \\ __MODULE__, id), do: Repo.get(query, id)
 end
